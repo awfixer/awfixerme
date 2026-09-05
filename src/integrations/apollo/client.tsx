@@ -1,0 +1,8 @@
+import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client"
+
+export function createApolloClient(uri = "/graphql") {
+  return new ApolloClient({
+    cache: new InMemoryCache(),
+    link: new HttpLink({ uri }),
+  })
+}

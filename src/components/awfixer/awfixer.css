@@ -1,0 +1,94 @@
+.kinetic-root {
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  background: #ff4d00;
+  color: #000;
+  overflow-x: clip;
+}
+
+.kinetic-root .font-display {
+  font-family: 'Archivo Black', 'Archivo', ui-sans-serif, sans-serif;
+}
+
+.kinetic-root .font-mono,
+.kinetic-root font-mono {
+  font-family: 'Space Mono', ui-monospace, monospace;
+}
+
+.kinetic-root ::selection {
+  background: #000;
+  color: #ff4d00;
+}
+
+/* neutralize global link underline inside kinetic scope (text color is
+   left to Tailwind `text-*` utilities + explicit classes per link) */
+.kinetic-root a {
+  text-decoration: none;
+}
+
+/* skewed marquee wrapper: -2deg */
+.kx-skew {
+  transform: rotate(-2deg);
+  overflow: hidden;
+}
+
+/* linear marquees */
+@keyframes kx-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.kx-marquee-track {
+  animation: kx-marquee 28s linear infinite;
+  will-change: transform;
+}
+
+.kx-marquee-track.kx-reverse {
+  animation-direction: reverse;
+  animation-duration: 34s;
+}
+
+/* spin indicator — 12s linear rotation */
+@keyframes kx-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.kx-spin {
+  animation: kx-spin 12s linear infinite;
+  will-change: transform;
+}
+
+/* reveal — subtle, keeps brutalist sharpness */
+.kinetic-root .kx-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.kinetic-root .kx-reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kinetic-root .kx-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .kx-marquee-track,
+  .kx-spin {
+    animation: none;
+  }
+  .kx-skew {
+    transform: none;
+  }
+}

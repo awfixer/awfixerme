@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Full-bleed black backdrop while this page is mounted (auto-restores on unmount) */
+body:has(.superdesign-root) {
+  background-color: #050505;
+  background-image: none;
+}
+
+body:has(.superdesign-root)::before,
+body:has(.superdesign-root)::after {
+  display: none;
+}
+
+.superdesign-root {
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  background-color: #050505;
+  color: #fff;
+  overflow-x: clip;
+}
+
+/* Keep the original `font-serif` markup but scope Playfair to this page only */
+.superdesign-root .font-serif {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* Neutralize global link underline inside this dark canvas (text color is
+   left to Tailwind `text-*` utilities + explicit classes per link) */
+.superdesign-root a,
+.superdesign-root a:hover {
+  text-decoration: none;
+}
+
+/* Reveal on scroll (React-driven `active` class, same easing as original) */
+.superdesign-root .sd-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.superdesign-root .sd-reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .superdesign-root .sd-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .superdesign-root .sd-animate-float-left,
+  .superdesign-root .sd-animate-float-right {
+    animation: none;
+  }
+  .superdesign-root .sd-parallax-up,
+  .superdesign-root .sd-parallax-down {
+    transform: none !important;
+    will-change: auto !important;
+  }
+}
+
+/* Floating surrealist hands */
+@keyframes sd-float-hand-left {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+  50% {
+    transform: translateY(-20px) rotate(2deg);
+  }
+}
+
+@keyframes sd-float-hand-right {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+  50% {
+    transform: translateY(20px) rotate(-2deg);
+  }
+}
+
+.superdesign-root .sd-animate-float-left {
+  animation: sd-float-hand-left 12s ease-in-out infinite;
+}
+
+.superdesign-root .sd-animate-float-right {
+  animation: sd-float-hand-right 14s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .superdesign-root .sd-animate-float-left,
+  .superdesign-root .sd-animate-float-right {
+    animation: none;
+  }
+}
+
+/* Film-grain overlay */
+.superdesign-root .sd-noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url('/noise.svg');
+}
+
+/* Scroll-driven parallax (offsets set from React via CSS vars) */
+.superdesign-root .sd-parallax-up {
+  transform: translateY(var(--sd-offset-up, 0px));
+  will-change: transform;
+}
+
+.superdesign-root .sd-parallax-down {
+  transform: translateY(var(--sd-offset-down, 0px));
+  will-change: transform;
+}
