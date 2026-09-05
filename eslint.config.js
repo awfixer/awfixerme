@@ -19,7 +19,7 @@ export default [
       'eslint.config.js',
       'prettier.config.js',
       '.direnv/**',
-      '.output/**'
+      '.output/**',
     ],
   },
 ]

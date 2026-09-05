@@ -363,13 +363,22 @@ export default function SuperdesignPage() {
 
             <div className="flex flex-col gap-8 text-right">
               <div className="flex flex-col gap-4 text-gray-400">
-                <a href="#" className="text-gray-400 transition-colors hover:text-white">
+                <a
+                  href="#"
+                  className="text-gray-400 transition-colors hover:text-white"
+                >
                   Instagram
                 </a>
-                <a href="#" className="text-gray-400 transition-colors hover:text-white">
+                <a
+                  href="#"
+                  className="text-gray-400 transition-colors hover:text-white"
+                >
                   Twitter
                 </a>
-                <a href="#" className="text-gray-400 transition-colors hover:text-white">
+                <a
+                  href="#"
+                  className="text-gray-400 transition-colors hover:text-white"
+                >
                   LinkedIn
                 </a>
               </div>
