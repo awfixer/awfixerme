@@ -2,9 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/blog/:slug')({
   loader: async ({ params }) => {
-    // Dynamically import the DatoCMS client – server‑only in TanStack Start
-    const module = await import('@/lib/datoCms')
-    const { datoClient } = module
+    const { datoClient } = await import('@/lib/datoCms')
 
     const { data, error } = await datoClient.items
       .search('blogPost', {

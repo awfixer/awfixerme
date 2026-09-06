@@ -21,7 +21,10 @@ export const BlogPostList = ({ posts }: { posts: any }) => {
   return (
     <ul className="space-y-4">
       {formatted.map((post, i) => (
-        <li key={post.title + i} className="group hover:text-[#FF4D00] transition-colors">
+        <li
+          key={post.title + i}
+          className="group hover:text-[#FF4D00] transition-colors"
+        >
           <a
             href={`/blog/${post.slug}`}
             className="block font-medium text-lg leading-tight hover:underline"
